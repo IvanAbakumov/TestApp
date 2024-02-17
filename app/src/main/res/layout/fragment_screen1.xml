@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="view"
+            type="com.world.test.presentation.screen_1.Screen1Fragment" />
+
+        <variable
+            name="viewModel"
+            type="com.world.test.presentation.screen_1.Screen1ViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.world.test.presentation.screen_1.HistoryAdapter" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.screen_1.Screen1Fragment"
+        android:padding="@dimen/mid">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputViewNumber"
+            style="@style/BaseTextInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@drawable/baseline_search_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputFieldShopName"
+                style="@style/BaseTextInputEditText"
+                android:hint="@string/hint_enter_number"
+                android:onTextChanged="@{(text, start, before, count) -> viewModel.setNumber(text)}"
+                android:inputType="number"
+                android:text="@{viewModel.number}"
+                tools:text="Name" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGetFact"
+            style="@style/YellowButton"
+            android:text="@string/btn_get_fact"
+            android:onClick="@{() -> view.onClickGetFact()}"
+            android:layout_marginBottom="@dimen/mid_20"
+            app:layout_constraintTop_toBottomOf="@+id/inputViewNumber"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGetFactRandom"
+            style="@style/YellowButton"
+            android:text="@string/btn_get_fact_random"
+            android:layout_marginBottom="@dimen/mid_20"
+            android:onClick="@{() -> view.onClickGetFactRandom()}"
+            app:layout_constraintTop_toBottomOf="@+id/btnGetFact"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <include
+            android:id="@+id/viewListItems"
+            layout="@layout/view_list_items"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/match_constraint"
+            app:viewModel="@{viewModel}"
+            app:adapter="@{adapter}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnGetFactRandom"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

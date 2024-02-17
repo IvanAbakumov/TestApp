@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="view"
+            type="com.world.test.presentation.screen_2.Screen2Fragment" />
+
+        <variable
+            name="viewModel"
+            type="com.world.test.presentation.screen_2.Screen2ViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/mid"
+        tools:context=".presentation.screen_2.Screen2Fragment">
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="@{viewModel.progressBarVisibility == true ? View.VISIBLE : View.GONE}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="@dimen/font.55"
+            android:text="@{viewModel.factNumberModel.number}"
+            android:textColor="@color/black"
+            app:fontFamily="@font/montserrat_semi_bold"
+            tools:text="123" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/match_constraint"
+            android:layout_marginVertical="@dimen/mid"
+            app:layout_constraintTop_toBottomOf="@+id/tvNumber"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btnBack"
+            app:fontFamily="@font/montserrat_medium"
+            android:text="@{viewModel.factNumberModel.text}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font.22"
+            tools:text="123" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBack"
+            style="@style/YellowButton"
+            android:text="@string/btn_back"
+            android:onClick="@{() -> view.onClickBack()}"
+            android:layout_marginBottom="@dimen/mid_20"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
